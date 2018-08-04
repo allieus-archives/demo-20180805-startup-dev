@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf8" />
+        <title>카카오톡 일기장 봇</title>
+    </head>
+    <body>
+        <ul>
+            {% for post in post_list %}
+            <li>
+                {% if post.photo %}
+                <img src="{{ post.photo.url }}" style="width: 100px;" />
+                {% else %}
+                {{ post.message }}
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
+

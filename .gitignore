@@ -1,0 +1,10 @@
+.ipynb_checkpoints
+/static
+/media
+/db.sqlite3
+__pycache__
+*.pyc
+*.ipynb
+/backup.sh
+goorm.*
+.temp

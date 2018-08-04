@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>chatbot with dialogflow</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+<body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+        <h5 class="my-0 mr-md-auto font-weight-normal">
+            Chatbot with Ask Company
+        </h5>
+        <nav class="my-2 my-md-0 mr-md-3">
+            <a class="p-2 text-dark" href="https://dialogflow.com/" target="_blank">Google Dialogflow HOME</a>
+            <a class="p-2 text-dark" href="https://askcompany.kr/" target="_blank">Ask Company HOME</a>
+        </nav>
+        {# <a class="btn btn-outline-primary" href="#">Sign up</a> #}
+    </div>
+
+    <div class="container">
+
+        {% if WEB_DEMO_URL %}
+            <iframe allow="microphone;" width="100%" height="430" src="{{ WEB_DEMO_URL }}"></iframe>
+        {% else %}
+            <div class="alert alert-warning">askcompany/settings.py 경로에 WEB_DEMO_URL 설정을 해주세요.</div>
+        {% endif %}
+
+        <footer class="pt-4 my-md-5 border-top">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <small class="d-block mb-3 text-muted">
+                        &copy; 2018. <a href="https://www.askcompany.kr" target="_blank">Ask Company</a>.
+                    </small>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>

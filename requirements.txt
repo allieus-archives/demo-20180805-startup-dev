@@ -1,0 +1,10 @@
+django==2.1.0
+django-extensions
+jsonfield
+pillow
+requests
+beautifulsoup4
+jupyter
+
+pandas
+lxml
