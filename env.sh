@@ -4,6 +4,7 @@
 export DIALOGFLOW_CLIENT_ACCESS_TOKEN="채워주세요"
 export DIALOGFLOW_DEVELOPER_ACCESS_TOKEN="채워주세요"
 export DIALOGFLOW_WEB_DEMO_URL="채워주세요"
+export JUPYTER_NOTEBOOK_TOKEN="hellopython"  # Jupyter Login 암호
 
 # etc
 export LC_ALL="ko_KR.UTF-8"

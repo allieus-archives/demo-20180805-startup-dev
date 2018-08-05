@@ -137,5 +137,15 @@ DIALOGFLOW = {
 }
 
 
-NOTEBOOK_ARGUMENTS = ['--ip=0.0.0.0', '--allow-root']
+JUPYTER_NOTEBOOK_TOKEN = os.environ.get('JUPYTER_NOTEBOOK_TOKEN')
+
+NOTEBOOK_ARGUMENTS = [
+    '--ip=0.0.0.0',
+    '--allow-root',
+    '--port=8888',
+]
+
+if JUPYTER_NOTEBOOK_TOKEN:
+    option = '--NotebookApp.token=' + JUPYTER_NOTEBOOK_TOKEN
+    NOTEBOOK_ARGUMENTS.append(option)
 
