@@ -1,5 +1,7 @@
 ## askcompany
 
+https://www.facebook.com/askdjango/posts/1084616228368097 에서 관련 슬라이드 자료를 확인하실 수 있습니다.
+
 ### 필요한 환경설정
 
 dialogflow에서 Agent를 생성하고, 다음 설정값을 채워주세요. (윈도우는 지원하지 않습니다.)
@@ -22,6 +24,13 @@ pip3 install -r requirements.txt
 
 ```sh
 source env.sh
+```
+
+마이그레이션 과정과 슈퍼유저 계정을 생성해주세요.
+
+```sh
+python3 manage.py migrate
+python3 manage.py createsuperuser
 ```
 
 다음 명령으로 개발서버를 실행시킬 수 있습니다.
