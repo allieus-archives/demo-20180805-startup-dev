@@ -31,8 +31,12 @@ def 블로그_검색(query):
         url = title_tag['href']
         title = title_tag.text
         desc = tag.select_one('.sh_blog_passage').text
-        thumb_url = tag.select_one('img')['src']
         when = tag.select_one('.txt_inline').text
+
+        try:
+            thumb_url = tag.select_one('img')['src']
+        except TypeError:
+            thumb_url = None
 
         post_list.append({
             'title': title,

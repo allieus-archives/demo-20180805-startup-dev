@@ -1,10 +1,8 @@
-from pprint import pprint
 from django.conf import settings
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from . import actions
-# from .models import Pizza
 
 
 def index(request):
@@ -13,20 +11,21 @@ def index(request):
     })
 
 
-@csrf_exempt
 @require_POST
+@csrf_exempt
 def fulfillment(request):
-    # request.JSON: intent에서 먼저 처리한 내역
+    # intent_name = request.JSON['result']['metadata']['intentName']
     action_name = request.JSON['result']['action'].replace('-', '_')
     params = request.JSON['result']['parameters']
 
     action = getattr(actions, action_name, None)
-    if callable(action):
-        speech = action(**params)
-    else:
-        speech = '제가 처리할 수 없는 부분입니다.'
 
-    return {
-        'speech': speech,
-    }
+    if callable(action):
+        response = action(**params)
+    else:
+        response = {
+            'speech': '제가 처리할 수 없는 부분입니다.',
+        }
+
+    return response
 

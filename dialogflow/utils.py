@@ -6,10 +6,10 @@ from django.conf import settings
 # intent
 #
 
-def query_speech(session_id, text):
+def query_speech(session_id, text, lang=None, timezone=None):
     data = {
-        'lang': settings.LANGUAGE_CODE.split('-')[0],
-        'timezone': settings.TIME_ZONE,
+        'lang': lang or settings.LANGUAGE_CODE.split('-')[0],
+        'timezone': timezone or settings.TIME_ZONE,
         'sessionId': session_id,
         'query': text,
     }
@@ -17,12 +17,8 @@ def query_speech(session_id, text):
     path = '/query'
     url, headers = prepare(path, is_developer_request=False)
     res = requests.post(url, headers=headers, json=data)
-
-    if not res.ok:
-        return 'ERROR: Please try again in a few minutes.'
-
-    res_dict = res.json()
-    return res_dict['result']['fulfillment']['speech']
+    res.raise_for_status()
+    return res.json()
 
 
 #
@@ -33,6 +29,7 @@ def get_entity_list():
     path = '/entities'
     url, headers = prepare(path, is_developer_request=True)
     res = requests.get(url, headers=headers)
+    res.raise_for_status()
     return res.json()
 
 
@@ -40,6 +37,7 @@ def get_entity_detail(entity_id):
     path = '/entities/{}'.format(entity_id)
     url, headers = prepare(path, is_developer_request=True)
     res = requests.get(url, headers=headers)
+    res.raise_for_status()
     return res.json()
 
 
@@ -52,6 +50,7 @@ def create_entity(name, entry_dict):
     path = '/entities'
     url, headers = prepare(path, is_developer_request=True)
     res = requests.post(url, headers=headers, json=data)
+    res.raise_for_status()
     return res.json()
 
 
@@ -64,6 +63,7 @@ def update_entry(entity_id, name, entry_dict):
     path = '/entities/{}'.format(entity_id)
     url, headers = prepare(path, is_developer_request=True)
     res = requests.put(url, headers=headers, json=data)
+    res.raise_for_status()
     return res.json()
 
 
@@ -71,6 +71,7 @@ def delete_entity(entity_id):
     path = '/entities/{}'.format(entity_id)
     url, headers = prepare(path, is_developer_request=True)
     res = requests.delete(url, headers=headers)
+    res.raise_for_status()
     return res.json()
 
 
@@ -84,6 +85,7 @@ def update_entries(entity_id, entry_dict):
     path = '/entities/{}/entries'.format(entity_id)
     url, headers = prepare(path, is_developer_request=True)
     res = requests.put(url, headers=headers, json=data)
+    res.raise_for_status()
     return res.json()
 
 
@@ -93,6 +95,7 @@ def delete_entries(entity_id, entry_id_list):
     path = '/entities/{}/entries'.format(entity_id)
     url, headers = prepare(path, is_developer_request=True)
     res = requests.delete(url, headers=headers, json=data)
+    res.raise_for_status()
     return res.json()
 
 
