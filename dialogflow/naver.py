@@ -22,16 +22,16 @@ def 블로그_검색(query):
     res = requests.get(url, params=params, headers=headers)
     html = res.text
     soup = BeautifulSoup(html, 'html.parser')
-
+    
     post_list = []
 
-    for tag in soup.select('.sh_blog_top'):
-        title_tag = tag.select_one('.sh_blog_title')
+    for tag in soup.select('.lst_total li'):
+        title_tag = tag.select_one('.total_tit')
 
         url = title_tag['href']
         title = title_tag.text
-        desc = tag.select_one('.sh_blog_passage').text
-        when = tag.select_one('.txt_inline').text
+        desc = tag.select_one('.dsc_txt').text
+        when = tag.select_one('.sub_time').text
 
         try:
             thumb_url = tag.select_one('img')['src']
