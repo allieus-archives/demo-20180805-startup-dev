@@ -15,8 +15,8 @@ def index(request):
 @csrf_exempt
 def fulfillment(request):
     # intent_name = request.JSON['result']['metadata']['intentName']
-    action_name = request.JSON['result']['action'].replace('-', '_')
-    params = request.JSON['result']['parameters']
+    action_name = request.JSON['queryResult']['action'].replace('-', '_')
+    params = request.JSON['queryResult']['parameters']
 
     action = getattr(actions, action_name, None)
 
@@ -24,7 +24,7 @@ def fulfillment(request):
         response = action(**params)
     else:
         response = {
-            'speech': '제가 처리할 수 없는 부분입니다.',
+            'fulfillmentText': '제가 처리할 수 없는 부분입니다.',
         }
 
     return response
